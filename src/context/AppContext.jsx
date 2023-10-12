@@ -14,7 +14,9 @@ export default function AppContextProvider({children}) {
 
     async function fetchBlogPost(page=1){
         setLoading(true);
-        let url = `${baseUrl}?page=${page}`
+        let url = `${baseUrl}?page=${page}`;
+        console.log("printing the final URL");
+        console.log(url);
         try{
             const result = await fetch(url)
             const data = await result.json();
@@ -32,6 +34,13 @@ export default function AppContextProvider({children}) {
         setLoading(false)
     }
 
+
+    
+    function handlePageChange(page){
+        setPage(page);
+        fetchBlogPost(page);
+    }
+
     const value = {
         posts, 
         setPosts,
@@ -40,13 +49,14 @@ export default function AppContextProvider({children}) {
         page,
         setPage,
         totalPages,
-        setTotalPages
+        setTotalPages,
+        handlePageChange,
+        fetchBlogPost
     }
 
-    return(
+    return (
         <AppContext.Provider value={value}>
-            {children}
+        {children}
         </AppContext.Provider>
     )
-
 }

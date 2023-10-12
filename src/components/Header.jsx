@@ -1,6 +1,10 @@
 function Header() {
   return (
-    <div>Header</div>
+    <div>
+      <header>
+        <h1>BlogPost.In</h1>
+      </header>
+    </div>
   )
 }
 
