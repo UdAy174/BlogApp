@@ -1,9 +1,8 @@
-import Header from './components/Header'
-import Pagination from './components/Pagination'
-import Blogs from './components/Blogs'
+
 import './App.css'
 import { useContext, useEffect } from 'react'
 import { AppContext } from './context/AppContext'
+import { Route, Routes } from 'react-router-dom'
 
 function App() {
   const {fetchBlogPost} = useContext(AppContext);
@@ -14,11 +13,12 @@ function App() {
 
 
   return (
-    <div>
-      <Header/>
-      <Blogs/>
-      <Pagination/>
-    </div>
+    <Routes>
+      <Route path="/" element = {<Home/>} />
+      <Route path="/blog/:blogId" element = {<BlogPage/>} />
+      <Route path="/tags/:tag" element = {<TagPage/>} />
+      <Route path="/categories/:category" element = {<CategoryPage/>} />
+    </Routes>
   );
 }
 

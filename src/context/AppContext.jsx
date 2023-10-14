@@ -12,9 +12,17 @@ export default function AppContextProvider({children}) {
 
     //Blog data Addition
 
-    async function fetchBlogPost(page=1){
+    async function fetchBlogPost(page=1,tag=null,category){
         setLoading(true);
         let url = `${baseUrl}?page=${page}`;
+
+        if(tag){
+            url += `&tag=${tag}`;
+        }
+
+        if(category){
+            url += `&category=${category}`;
+        }
         console.log("printing the final URL");
         console.log(url);
         try{
